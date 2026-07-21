@@ -1,18 +1,11 @@
-name: Build and Deploy
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
-  build:
-    # Ubah bagian ini untuk menargetkan server Anda
-    runs-on: self-hosted 
+  deploy:
+    # Memanggil runner 'rifki' menggunakan kombinasi labelnya
+    runs-on: [self-hosted, Linux, X64]
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Uji coba runner
-        run: echo "Proses ini berjalan di server Debian saya!"
+      - name: Uji coba koneksi
+        run: echo "Workflow ini berhasil berjalan di server Debian Rifki!"
