@@ -1,0 +1,22 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Sinkronisasi file ke Web Server
+        # Sync dari direktori repositori (./) ke folder web server
+        # Flag -a: Archive (mempertahankan struktur dan izin)
+        # Flag -v: Verbose (menampilkan log)
+        # Flag --delete: Menghapus file di server web jika file tersebut dihapus di GitHub
+        run: |
+          rsync -av --delete ./ /var/www/html/
